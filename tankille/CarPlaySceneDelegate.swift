@@ -24,33 +24,36 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
     // 3
     setInformationTemplate()
   }
+  
+  private func kissa () async {
+    do {
+      try await self.interfaceController?.dismissTemplate(animated: true)
+    } catch {
+      print("Kusi")
+    }
+  }
 
   /// 4. Information template
   private func setInformationTemplate() {
     // 5 - Setting the content for the template
     
-    let location = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(61.492295), longitude: CLLocationDegrees(23.771604))))
+    guard let interfaceController = self.interfaceController else {return}
     
-    let POI = CPPointOfInterest(location: location, title: "Neste K Hatanpää", subtitle: "Tankki", summary: "Mene tänne tankkaamaan", detailTitle: "DTitle", detailSubtitle: "DSubtitle", detailSummary: "DSum", pinImage: UIImage(systemName: "hand.point.down"))
+    let POI = JFPointOfInterest(interfaceController: self.interfaceController!, templateApplicationScene: self.templateApplicationScene).getPointOfInterestTemplate()
     
-    POI.primaryButton = CPTextButton(title: "Navigoi", textStyle: .confirm, handler: {_ in
-      print("NAVIGATE")
-      
-      MKMapItem.openMaps(with: [location])
-    
-    })
-    
-    let POITemplate = CPPointOfInterestTemplate(title: "CPPOint", pointsOfInterest: [POI], selectedIndex: 0)
     
     let actionsheet = CPActionSheetTemplate(title: "Joujou", message: "Oletko testissä", actions: [
-      CPAlertAction(title: "Ok", color: .red, handler: { [self]_ in
-        
-        interfaceController?.dismissTemplate(animated: true, completion: nil)
+      CPAlertAction(title: "Ok", color: .red, handler: {_ in
+      
+        Task {
+          await self.kissa()
+        }
+   
       }),
       
       CPAlertAction(title: "En", style: .destructive, handler: {_ in
-        self.interfaceController?.dismissTemplate(animated: true, completion: {_,_  in
-          self.interfaceController?.pushTemplate(POITemplate, animated: true, completion: nil)
+        interfaceController.dismissTemplate(animated: true, completion: {_,_  in
+          interfaceController.pushTemplate(POI, animated: true, completion: nil)
         })
       })
     ])
@@ -58,26 +61,31 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
     
     let items: [CPInformationItem] = [
       CPInformationItem(
-        title: "Template type",
-        detail: "Information Template (CPInformationTemplate)"
+        title: "Kyllä infoa",
+        detail: "Detaileja"
       )
     ]
     
     let actions: [CPTextButton] = [
       CPTextButton(title: "Nappula", textStyle: .normal) {_ in
         print("Kissa")
-        self.interfaceController?.presentTemplate(actionsheet, animated: true, completion: nil)
+        interfaceController.presentTemplate(actionsheet, animated: true, completion: nil)
+      },
+      CPTextButton(title: "Suoraan karttaan", textStyle: .confirm) {_ in
+        Task {
+          try await interfaceController.pushTemplate(POI, animated: true)
+        }
       }
     ]
 
     // 6 - Selecting the template
-    let infoTemplate = CPInformationTemplate(title: "My first template",
-                                             layout: .leading,
+    let infoTemplate = CPInformationTemplate(title: "Tankille?",
+                                             layout: .twoColumn,
                                              items: items,
                                              actions: actions)
 
     // 7 - Setting the information template as the root template
-    interfaceController?.setRootTemplate(infoTemplate,
+    interfaceController.setRootTemplate(infoTemplate,
                                          animated: true,
                                          completion: { success, error in
                                            debugPrint("Success: \(success)")

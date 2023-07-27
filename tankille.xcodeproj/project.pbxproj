@@ -13,6 +13,7 @@
 		33B543842A724EC100488F2D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B543832A724EC100488F2D /* Preview Assets.xcassets */; };
 		33B5438C2A724F2800488F2D /* CarPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B5438B2A724F2800488F2D /* CarPlay.framework */; };
 		33B543922A72513400488F2D /* CarPlaySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B543912A72513400488F2D /* CarPlaySceneDelegate.swift */; };
+		33EEC95D2A7273D700419680 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EEC95C2A7273D700419680 /* PointOfInterest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		33B5438D2A724FCE00488F2D /* tankille.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tankille.entitlements; sourceTree = "<group>"; };
 		33B543902A72508900488F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		33B543912A72513400488F2D /* CarPlaySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlaySceneDelegate.swift; sourceTree = "<group>"; };
+		33EEC95C2A7273D700419680 /* PointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 		33B5437B2A724EBF00488F2D /* tankille */ = {
 			isa = PBXGroup;
 			children = (
+				33EEC95B2A7273BE00419680 /* CarPlay */,
 				33B543902A72508900488F2D /* Info.plist */,
 				33B5438D2A724FCE00488F2D /* tankille.entitlements */,
 				33B5437C2A724EBF00488F2D /* tankilleApp.swift */,
@@ -84,6 +87,14 @@
 				33B5438B2A724F2800488F2D /* CarPlay.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33EEC95B2A7273BE00419680 /* CarPlay */ = {
+			isa = PBXGroup;
+			children = (
+				33EEC95C2A7273D700419680 /* PointOfInterest.swift */,
+			);
+			path = CarPlay;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B5437F2A724EBF00488F2D /* ContentView.swift in Sources */,
+				33EEC95D2A7273D700419680 /* PointOfInterest.swift in Sources */,
 				33B543922A72513400488F2D /* CarPlaySceneDelegate.swift in Sources */,
 				33B5437D2A724EBF00488F2D /* tankilleApp.swift in Sources */,
 			);
