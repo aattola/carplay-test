@@ -10,6 +10,8 @@ import SwiftUI
 @main
 struct tankilleApp: App {
     var body: some Scene {
+
+
         WindowGroup {
             ContentView()
         }
