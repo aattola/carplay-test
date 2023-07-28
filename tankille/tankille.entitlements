@@ -4,7 +4,5 @@
 <dict>
 	<key>com.apple.developer.carplay-fueling</key>
 	<true/>
-	<key>com.apple.developer.associated-domains</key>
-	<array/>
 </dict>
 </plist>
