@@ -20,8 +20,10 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@jeffe/tankille": "^1.2.0",
     "@nestjs/cache-manager": "^2.0.1",
     "@nestjs/common": "^10.0.5",
+    "@nestjs/config": "^3.0.0",
     "@nestjs/core": "^10.0.5",
     "@nestjs/platform-express": "^10.0.5",
     "@total-typescript/ts-reset": "^0.4.2",

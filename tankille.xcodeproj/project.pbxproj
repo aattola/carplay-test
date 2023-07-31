@@ -14,6 +14,9 @@
 		33B5438C2A724F2800488F2D /* CarPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B5438B2A724F2800488F2D /* CarPlay.framework */; };
 		33B543922A72513400488F2D /* CarPlaySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B543912A72513400488F2D /* CarPlaySceneDelegate.swift */; };
 		33EEC95D2A7273D700419680 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EEC95C2A7273D700419680 /* PointOfInterest.swift */; };
+		33F53E212A73CF75009B7756 /* GetStations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F53E202A73CF75009B7756 /* GetStations.swift */; };
+		33F53E232A73CF84009B7756 /* StationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F53E222A73CF84009B7756 /* StationTypes.swift */; };
+		33F53E262A73CFD9009B7756 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 33F53E252A73CFD9009B7756 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,8 @@
 		33B543902A72508900488F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		33B543912A72513400488F2D /* CarPlaySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlaySceneDelegate.swift; sourceTree = "<group>"; };
 		33EEC95C2A7273D700419680 /* PointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
+		33F53E202A73CF75009B7756 /* GetStations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStations.swift; sourceTree = "<group>"; };
+		33F53E222A73CF84009B7756 /* StationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +40,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B5438C2A724F2800488F2D /* CarPlay.framework in Frameworks */,
+				33F53E262A73CFD9009B7756 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				33EEC95C2A7273D700419680 /* PointOfInterest.swift */,
+				33F53E202A73CF75009B7756 /* GetStations.swift */,
+				33F53E222A73CF84009B7756 /* StationTypes.swift */,
 			);
 			path = CarPlay;
 			sourceTree = "<group>";
@@ -113,6 +121,9 @@
 			dependencies = (
 			);
 			name = tankille;
+			packageProductDependencies = (
+				33F53E252A73CFD9009B7756 /* Alamofire */,
+			);
 			productName = tankille;
 			productReference = 33B543792A724EBF00488F2D /* tankille.app */;
 			productType = "com.apple.product-type.application";
@@ -141,6 +152,9 @@
 				Base,
 			);
 			mainGroup = 33B543702A724EBF00488F2D;
+			packageReferences = (
+				33F53E242A73CFD9009B7756 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 33B5437A2A724EBF00488F2D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -169,7 +183,9 @@
 			files = (
 				33B5437F2A724EBF00488F2D /* ContentView.swift in Sources */,
 				33EEC95D2A7273D700419680 /* PointOfInterest.swift in Sources */,
+				33F53E212A73CF75009B7756 /* GetStations.swift in Sources */,
 				33B543922A72513400488F2D /* CarPlaySceneDelegate.swift in Sources */,
+				33F53E232A73CF84009B7756 /* StationTypes.swift in Sources */,
 				33B5437D2A724EBF00488F2D /* tankilleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +395,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		33F53E242A73CFD9009B7756 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		33F53E252A73CFD9009B7756 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33F53E242A73CFD9009B7756 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 33B543712A724EBF00488F2D /* Project object */;
 }

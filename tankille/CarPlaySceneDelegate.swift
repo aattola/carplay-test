@@ -39,7 +39,7 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
     
     guard let interfaceController = self.interfaceController else {return}
     
-    let POI = JFPointOfInterest(interfaceController: self.interfaceController!, templateApplicationScene: self.templateApplicationScene).getPointOfInterestTemplate()
+    let POI = JFPointOfInterest(interfaceController: self.interfaceController!, templateApplicationScene: self.templateApplicationScene)
     
     
     let actionsheet = CPActionSheetTemplate(title: "Joujou", message: "Oletko testissä", actions: [
@@ -49,12 +49,6 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
           await self.kissa()
         }
    
-      }),
-      
-      CPAlertAction(title: "En", style: .destructive, handler: {_ in
-        interfaceController.dismissTemplate(animated: true, completion: {_,_  in
-          interfaceController.pushTemplate(POI, animated: true, completion: nil)
-        })
       })
     ])
     
@@ -72,9 +66,11 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
         interfaceController.presentTemplate(actionsheet, animated: true, completion: nil)
       },
       CPTextButton(title: "Suoraan karttaan", textStyle: .confirm) {_ in
-        Task {
-          try await interfaceController.pushTemplate(POI, animated: true)
-        }
+        getStationsByLocation(lat: 61.492, lon: 23.993, fuel: "95", {stations in
+          Task {
+            try await interfaceController.pushTemplate(POI.getPointOfInterestTemplate(points: stations), animated: true)
+          }
+        })
       }
     ]
 

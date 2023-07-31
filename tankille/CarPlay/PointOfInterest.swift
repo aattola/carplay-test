@@ -16,23 +16,44 @@ class JFPointOfInterest {
     self.templateApplicationScene = templateApplicationScene
   }
   
-  public func getPointOfInterestTemplate() -> CPPointOfInterestTemplate {
+  public func getPointOfInterestTemplate(points: Stations) -> CPPointOfInterestTemplate {
     let location = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(61.492295), longitude: CLLocationDegrees(23.771604))))
     
     location.name = "Neste K Hatanpää"
     location.pointOfInterestCategory = .gasStation
-  
     
-    let POI = CPPointOfInterest(location: location, title: "Neste K Hatanpää", subtitle: "Tankki", summary: "Mene tänne tankkaamaan", detailTitle: "Neste K Hatanpää", detailSubtitle: "", detailSummary: "95: 1.85€\n85: 2.19€\nD: 1.54€", pinImage: UIImage(systemName: "hand.point.down"))
     
-    POI.primaryButton = CPTextButton(title: "Navigoi", textStyle: .confirm, handler: {_ in
-      print("NAVIGATE")
+    let PointsOfInterest = points.map { (station) -> CPPointOfInterest in
       
-      location.openInMaps(from: self.templateApplicationScene, completionHandler: {_ in return})
+      let location = CLLocationCoordinate2D(latitude: station.location.coordinates[1], longitude: station.location.coordinates[0])
+      let placemark = MKPlacemark(coordinate: location)
+      let mapItem = MKMapItem(placemark: placemark)
+      
+      let title = station.name
+      let subtitle = station.chain
+      
+      let prices = station.price.map { (price) -> String in
+        return "\(price.tag): \(price.price)€"
+      }
+      
+      let detailSummary = prices.joined(separator: "\n")
+      let image = UIImage(systemName: "fuelpump.circle.fill")
+      
+      let poi = CPPointOfInterest(location: mapItem, title: title, subtitle: subtitle, summary: detailSummary, detailTitle: nil, detailSubtitle: nil, detailSummary: nil, pinImage: image)
+      
+      
+      let navigateButton = CPTextButton(title: "Navigoi", textStyle: .confirm) {_ in
+        mapItem.openInMaps(from: self.templateApplicationScene, completionHandler: {_ in return})
+      }
+      
+      poi.primaryButton = navigateButton
+      
+      return poi
+    }
     
-    })
+
     
-    let POITemplate = CPPointOfInterestTemplate(title: "Huoltoasemat", pointsOfInterest: [POI], selectedIndex: 0)
+    let POITemplate = CPPointOfInterestTemplate(title: "Huoltoasemat", pointsOfInterest: PointsOfInterest, selectedIndex: 0)
     
     return POITemplate
   }
